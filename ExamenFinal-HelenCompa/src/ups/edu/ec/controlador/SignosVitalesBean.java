@@ -9,7 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
-
+import ups.edu.ec.ejb.PacienteFacade;
 import ups.edu.ec.ejb.SignosVitalesFacade;
 import ups.edu.ec.modelo.Paciente;
 import ups.edu.ec.modelo.SignosVitales;
@@ -27,7 +27,9 @@ public class SignosVitalesBean implements Serializable{
 	private String frecuenciaCardiaca;
 	private String frecuenciaRespiratoria;
 	private String temperaturaSaturacion;
-	
+	private String cedula;
+	private PacienteFacade ejbPacienteFacade;
+	private Paciente pa=new Paciente();
 	public SignosVitalesBean() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -35,7 +37,7 @@ public class SignosVitalesBean implements Serializable{
 	
 	@PostConstruct
 	public void init() {
-		 
+		
 		 //ejbUsuarioFacade.create(new Usuario("Kevin","Cordero","0992726928","015128912","kevin@gmail.com","123",rol));
 		 list= ejbSignosVitales.findAll();
 	 }
@@ -123,7 +125,24 @@ public class SignosVitalesBean implements Serializable{
 				this.temperaturaSaturacion = temperaturaSaturacion;
 			}
 
+			public String getCedula() {
+				return cedula;
+			}
+
+			public void setCedula(String cedula) {
+				this.cedula = cedula;
+			}
+
+			public Paciente buscar() {
+				
+				pa.setCedula(this.cedula);
+				pa=ejbPacienteFacade.buscarRol(this.cedula);
+				if(pa !=null) {
+					return pa;
+				}
+				return pa;
+			}
 	
-	
+			
 }
 

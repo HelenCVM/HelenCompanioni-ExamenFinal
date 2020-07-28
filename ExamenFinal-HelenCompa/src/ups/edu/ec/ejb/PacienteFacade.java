@@ -22,4 +22,10 @@ public class PacienteFacade extends AbstractFacade<Paciente>{
 	        return em;
 	    }
 	
+	    public Paciente buscarRol(String cedula){
+			Paciente paciente=new Paciente();
+			String sql="SELECT p FROM Paciente p where p.cedula='"+cedula+"'";
+			paciente = (Paciente) em.createQuery(sql).getSingleResult();
+			return paciente;
+		}
 }

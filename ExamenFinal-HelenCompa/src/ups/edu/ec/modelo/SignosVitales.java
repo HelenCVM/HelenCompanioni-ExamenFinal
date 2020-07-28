@@ -130,7 +130,6 @@ public class SignosVitales implements Serializable {
 
 	
 
-
 	public SignosVitales(int id, String presion, String frecuenciaCardiaca, String frecuenciaRespiratoria,
 			String temperaturaSaturacion, Paciente signos) {
 		super();
