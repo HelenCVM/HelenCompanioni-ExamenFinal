@@ -134,9 +134,9 @@ public class SignosVitalesBean implements Serializable{
 			}
 
 			public Paciente buscar() {
-				
+				Paciente pa=new Paciente();
 				pa.setCedula(this.cedula);
-				pa=ejbPacienteFacade.buscarRol(this.cedula);
+				pa=ejbPacienteFacade.buscarRol(cedula);
 				if(pa !=null) {
 					return pa;
 				}
