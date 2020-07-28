@@ -20,6 +20,8 @@ public class SignosVitales implements Serializable {
 	private String frecuenciaCardiaca;
 	private String frecuenciaRespiratoria;
 	private String temperaturaSaturacion;
+	@Transient
+	private boolean editable;
 	@ManyToOne
 	@JoinColumn
 	private Paciente signos;
@@ -52,6 +54,42 @@ public class SignosVitales implements Serializable {
 
 	public String getFrecuenciaCardiaca() {
 		return frecuenciaCardiaca;
+	}
+
+
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SignosVitales other = (SignosVitales) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 
@@ -90,14 +128,18 @@ public class SignosVitales implements Serializable {
 	}
 
 
+	
+
+
 	public SignosVitales(int id, String presion, String frecuenciaCardiaca, String frecuenciaRespiratoria,
-			String temperaturaSaturacion) {
+			String temperaturaSaturacion, Paciente signos) {
 		super();
 		this.id = id;
 		this.presion = presion;
 		this.frecuenciaCardiaca = frecuenciaCardiaca;
 		this.frecuenciaRespiratoria = frecuenciaRespiratoria;
 		this.temperaturaSaturacion = temperaturaSaturacion;
+		this.signos = signos;
 	}
 
 
